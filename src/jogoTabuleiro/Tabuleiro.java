@@ -4,13 +4,13 @@ public class Tabuleiro {
 	
 	private int linha;
 	private int coluna;
-	/* matriz de peças*/
+	/* matriz de peï¿½as*/
 	private Peca[][] pecas;
 	
 	public Tabuleiro(int linha, int coluna) {
 		
 		if(linha <1 || coluna  <1) {
-			throw new TabuleiroException("Quantidade de linhas e colunas inválidas");
+			throw new TabuleiroException("Quantidade de linhas e colunas invï¿½lidas");
 		}
 		
 		this.linha = linha;
@@ -28,21 +28,21 @@ public class Tabuleiro {
 	
 	public Peca peca(int linha, int coluna) {
 		if(!posicaoExiste(linha,coluna)) {
-			throw new TabuleiroException("Posição inválida");
+			throw new TabuleiroException("Posiï¿½ï¿½o invï¿½lida");
 		}
 		return pecas[linha][coluna];
 	}
 	
 	public Peca peca(Posicao posicao) {
 		if(!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posição inválida");
+			throw new TabuleiroException("Posiï¿½ï¿½o invï¿½lida");
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 	
 	public void colocaPeca(Peca peca, Posicao posicao) {
 		if(ehPeca(posicao)) {
-			throw new TabuleiroException("Posição Ocupada " + posicao);
+			throw new TabuleiroException("Posiï¿½ï¿½o Ocupada " + posicao);
 		}
 		
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
@@ -51,7 +51,7 @@ public class Tabuleiro {
 	
 	public Peca removePeca(Posicao posicao) {
 		if(!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posição inválida");
+			throw new TabuleiroException("Posiï¿½ï¿½o invï¿½lida");
 		}
 		if(peca(posicao) == null){
 			return null;
@@ -65,7 +65,7 @@ public class Tabuleiro {
 	}
 	
 	private boolean posicaoExiste (int linha, int coluna) {
-		//dependendo da condição retorna verdadeiro ou falso
+		//dependendo da condiï¿½ï¿½o retorna verdadeiro ou falso
 		return (linha>=0 && coluna>=0 && linha<this.linha && coluna<this.coluna);
 	}
 	
@@ -75,8 +75,11 @@ public class Tabuleiro {
 	
 	public boolean ehPeca(Posicao posicao) {
 		if(!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posição inválida");
+			throw new TabuleiroException("Posiï¿½ï¿½o invï¿½lida");
 		}
 		return peca(posicao)!=null;
 	}
+	
+	
+	
 }
