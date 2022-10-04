@@ -8,7 +8,7 @@ public class PosicaoXadrez {
 	private int linha;
 	public PosicaoXadrez(char coluna, int linha) {
 		if (coluna < 'a' || coluna > 'h' || linha < 1 || linha > 8) {
-			throw new XadrezException("Posição inválida");			
+			throw new XadrezException("Posiï¿½ï¿½o invï¿½lida");			
 		}
 		this.coluna = coluna;
 		this.linha = linha;
@@ -25,6 +25,7 @@ public class PosicaoXadrez {
 	protected Posicao paraPosicao () {
 		return new Posicao(8 - linha, coluna - 'a');
 	}
+	
 	
 	protected static PosicaoXadrez fromPosicao(Posicao posicao) {
 		return new PosicaoXadrez((char)('a' + posicao.getColuna()), 8 - posicao.getLinha());

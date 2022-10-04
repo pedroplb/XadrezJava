@@ -13,9 +13,11 @@ public abstract class Peca {
 	}
 	
 	public abstract boolean[][] movimentoPossivel();
-	
+	 	
 	public boolean movimentoPossivel(Posicao posicao) {
+
 		return movimentoPossivel()[posicao.getLinha()][posicao.getColuna()];
+		
 	}
 	
 	public boolean ehPossivelMover() {
@@ -23,14 +25,14 @@ public abstract class Peca {
 		
 		for (int i=0; i<mat.length; i++) {
 			for (int j=0; j<mat.length; j++) {
-				if (mat[i][j]) {
+				if (mat[i][j]) {					
 					return true;
 				}
 			}
 		}
-		
 		return false;
 		
 	}
 	
 }
+

@@ -28,7 +28,7 @@ public class Tabuleiro {
 	
 	public Peca peca(int linha, int coluna) {
 		if(!posicaoExiste(linha,coluna)) {
-			throw new TabuleiroException("Posi��o inv�lida");
+			throw new TabuleiroException("Posicao invalida");
 		}
 		return pecas[linha][coluna];
 	}
@@ -42,7 +42,7 @@ public class Tabuleiro {
 	
 	public void colocaPeca(Peca peca, Posicao posicao) {
 		if(ehPeca(posicao)) {
-			throw new TabuleiroException("Posi��o Ocupada " + posicao);
+			throw new TabuleiroException("Posicao Ocupada " + posicao);
 		}
 		
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
@@ -51,7 +51,7 @@ public class Tabuleiro {
 	
 	public Peca removePeca(Posicao posicao) {
 		if(!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posi��o inv�lida");
+			throw new TabuleiroException("Posicao invalida");
 		}
 		if(peca(posicao) == null){
 			return null;
@@ -75,7 +75,7 @@ public class Tabuleiro {
 	
 	public boolean ehPeca(Posicao posicao) {
 		if(!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posi��o inv�lida");
+			throw new TabuleiroException("Posicao invalida");
 		}
 		return peca(posicao)!=null;
 	}
