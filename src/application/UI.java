@@ -58,7 +58,24 @@ public class UI {
 
 			System.out.print((8-i) + " ");
 			for(int j=0;j<pecas.length;j++) {
-				imprimePeca(pecas[i][j]);								
+				imprimePeca(pecas[i][j], false);								
+			}
+			System.out.println();
+		}
+
+		System.out.println("  a b c d e f g h");
+
+	}
+	
+	public static void imprimeTabuleiro(PecaXadrez [][] pecas, boolean[][] movimentosPossiveis) {
+
+		// esta usando o tamanho da matriz tanto na linha qto coluna considerando a matriz quadrada
+
+		for(int i=0; i<pecas.length; i++) {
+
+			System.out.print((8-i) + " ");
+			for(int j=0;j<pecas.length;j++) {
+				imprimePeca(pecas[i][j], movimentosPossiveis[i][j]);								
 			}
 			System.out.println();
 		}
@@ -67,9 +84,13 @@ public class UI {
 
 	}
 
-	private static void imprimePeca(PecaXadrez peca) {
+	private static void imprimePeca(PecaXadrez peca, boolean fundo) {
+		if (fundo) {
+			System.out.print(ANSI_BLUE);
+		}
+		
 		if (peca == null) {
-			System.out.print("-");
+			System.out.print("-" + ANSI_RESET);
 		}else {
 			if (peca.getCor() == Cor.BRANCO) {
 				System.out.print(ANSI_WHITE + peca + ANSI_RESET);
