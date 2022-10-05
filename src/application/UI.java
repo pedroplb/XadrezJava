@@ -78,6 +78,12 @@ public class UI {
 		System.out.println();
 		System.out.println("Turno: " + partidaXadrez.getTurno());
 		System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
+		if (partidaXadrez.getCheck()){
+			System.out.print(ANSI_RED );
+			System.out.print(ANSI_YELLOW_BACKGROUND );
+			System.out.println("CHECK!");
+			System.out.println(ANSI_RESET);
+		}
 	}
 	
 	public static void imprimeTabuleiro(PecaXadrez [][] pecas, boolean[][] movimentosPossiveis) {
