@@ -1,5 +1,7 @@
 package Xadrez;
 
+import java.awt.Color;
+
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
 import jogoTabuleiro.Peca;
@@ -9,11 +11,24 @@ import jogoTabuleiro.Tabuleiro;
 public class PartidaXadrez {
 	
 	private Tabuleiro tabuleiro;
+	private int turno;
+	private Cor jogadorAtual;
 	
 	public PartidaXadrez() {
 		tabuleiro = new Tabuleiro(8, 8);
+		turno  = 1;
+		jogadorAtual = Cor.BRANCO;
 		configInicial();
 	}
+	
+	public int getTurno() {
+		return this.turno;
+	}
+	
+	public Cor getJogadorAtual() {
+		return this.jogadorAtual;
+	}
+	
 	
 	// retorna matriz de pecas da partida
 	public PecaXadrez[][] getPecas(){
@@ -45,6 +60,7 @@ public class PartidaXadrez {
 		validaPosicaoOrigem(origem);
 		validaPosicaoDestino(origem,destino);
 		Peca capturadaPeca = movimentar(origem, destino);
+		proximoTurno();
 		return (PecaXadrez) capturadaPeca;
 		
 	}
@@ -61,9 +77,14 @@ public class PartidaXadrez {
 			throw new XadrezException("Nao ha peca na posicao de origem");
 		}
 
+		if(jogadorAtual != ((PecaXadrez)tabuleiro.peca(posicao)).getCor()) {
+			throw new XadrezException("A peca escolhida nao e a sua");
+		}
+		
 		if (!tabuleiro.peca(posicao).ehPossivelMover()) {
 			throw new XadrezException("Nao ha movimentos possiveis para esta peca");
 		}
+		
 	}
 	
 	private void validaPosicaoDestino(Posicao origem, Posicao destino) {
@@ -71,6 +92,11 @@ public class PartidaXadrez {
 			throw new XadrezException("Destino invalido para a peca escolhida");
 		}
 		
+	}
+	
+	private void proximoTurno() {
+		turno ++;
+		jogadorAtual = (jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
 	}
 	
 	private void colocaPeca(char coluna, int linha, PecaXadrez peca) {
