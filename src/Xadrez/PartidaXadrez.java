@@ -1,6 +1,7 @@
 package Xadrez;
 
-import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
@@ -13,6 +14,8 @@ public class PartidaXadrez {
 	private Tabuleiro tabuleiro;
 	private int turno;
 	private Cor jogadorAtual;
+	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
+	private List<Peca> pecasCapturadas = new ArrayList<>();
 	
 	public PartidaXadrez() {
 		tabuleiro = new Tabuleiro(8, 8);
@@ -69,6 +72,12 @@ public class PartidaXadrez {
 		Peca p = tabuleiro.removePeca(origem);
 		Peca capturadaPeca = tabuleiro.removePeca(destino);
 		tabuleiro.colocaPeca(p, destino);
+		
+		if (capturadaPeca !=null) {
+			pecasNoTabuleiro.remove(capturadaPeca);
+			pecasCapturadas.add(capturadaPeca);
+		}
+		
 		return capturadaPeca;
 	}
 	
@@ -101,6 +110,7 @@ public class PartidaXadrez {
 	
 	private void colocaPeca(char coluna, int linha, PecaXadrez peca) {
 		tabuleiro.colocaPeca(peca, new PosicaoXadrez(coluna, linha).paraPosicao());
+		pecasNoTabuleiro.add(peca);
 	}
 	
 	private void configInicial() {
