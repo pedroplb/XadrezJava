@@ -2,9 +2,9 @@ package Xadrez;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import Xadrez.pecas.Peao;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
 import jogoTabuleiro.Peca;
@@ -96,7 +96,8 @@ public class PartidaXadrez {
 	}
 	
 	private Peca movimentar(Posicao origem, Posicao destino) {
-		Peca p = tabuleiro.removePeca(origem);
+		PecaXadrez p = (PecaXadrez)tabuleiro.removePeca(origem);
+		p.somaContaMovimento();
 		Peca capturadaPeca = tabuleiro.removePeca(destino);
 		tabuleiro.colocaPeca(p, destino);
 		
@@ -109,8 +110,9 @@ public class PartidaXadrez {
 	}
 	
 	private void desfazerMovimento (Posicao origem, Posicao destino, Peca pecaCapturada) {
-		Peca p = tabuleiro.removePeca(destino);
+		PecaXadrez p = (PecaXadrez)tabuleiro.removePeca(destino);
 		tabuleiro.colocaPeca(p, origem);
+		p.subtraiContaMovimento();
 		
 		if(pecaCapturada !=null) {
 			tabuleiro.colocaPeca(pecaCapturada, destino);
@@ -213,12 +215,28 @@ public class PartidaXadrez {
 	
 	private void configInicial() {
 		colocaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
+		colocaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
 		colocaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
-		colocaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
+		colocaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocaPeca('c', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocaPeca('d', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocaPeca('e', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocaPeca('f', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocaPeca('g', 2, new Peao(tabuleiro, Cor.BRANCO));
+		colocaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
 
 		colocaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
+		colocaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
 		colocaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
-		colocaPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
+		colocaPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocaPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocaPeca('c', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocaPeca('d', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocaPeca('e', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocaPeca('f', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocaPeca('g', 7, new Peao(tabuleiro, Cor.PRETO));
+		colocaPeca('h', 7, new Peao(tabuleiro, Cor.PRETO));
 	}
 
 }
