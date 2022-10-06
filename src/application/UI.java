@@ -77,13 +77,23 @@ public class UI {
 		imprimePecasCapturadas(capturada);
 		System.out.println();
 		System.out.println("Turno: " + partidaXadrez.getTurno());
-		System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
-		if (partidaXadrez.getCheck()){
-			System.out.print(ANSI_RED );
-			System.out.print(ANSI_YELLOW_BACKGROUND );
-			System.out.println("CHECK!");
+		if(!partidaXadrez.getCheckMate()) {
+			System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
+			if (partidaXadrez.getCheck()){
+				System.out.print(ANSI_RED );
+				System.out.print(ANSI_YELLOW_BACKGROUND );
+				System.out.println("CHECK!");
+				System.out.println(ANSI_RESET);
+			}
+		} else {
+			System.out.print(ANSI_WHITE_BACKGROUND );
+			System.out.print(ANSI_BLACK );
+			System.out.println("CHECKMATE!");
 			System.out.println(ANSI_RESET);
+			System.out.println("Vencedor: " + partidaXadrez.getJogadorAtual());
+			
 		}
+		
 	}
 	
 	public static void imprimeTabuleiro(PecaXadrez [][] pecas, boolean[][] movimentosPossiveis) {
