@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import Xadrez.pecas.Bispo;
 import Xadrez.pecas.Cavalo;
 import Xadrez.pecas.Peao;
+import Xadrez.pecas.Rainha;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
 import jogoTabuleiro.Peca;
@@ -235,6 +236,7 @@ public class PartidaXadrez {
 		colocaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
 		colocaPeca('b', 1, new Cavalo(tabuleiro, Cor.BRANCO));
 		colocaPeca('c', 1, new Bispo(tabuleiro, Cor.BRANCO));
+		colocaPeca('d', 1, new Rainha(tabuleiro, Cor.BRANCO));
 		colocaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
 		colocaPeca('f', 1, new Bispo(tabuleiro, Cor.BRANCO));
 		colocaPeca('g', 1, new Cavalo(tabuleiro, Cor.BRANCO));
@@ -251,6 +253,7 @@ public class PartidaXadrez {
 		colocaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
 		colocaPeca('b', 8, new Cavalo(tabuleiro, Cor.PRETO));
 		colocaPeca('c', 8, new Bispo(tabuleiro, Cor.PRETO));
+		colocaPeca('d', 8, new Rainha(tabuleiro, Cor.PRETO));
 		colocaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
 		colocaPeca('f', 8, new Bispo(tabuleiro, Cor.PRETO));
 		colocaPeca('g', 8, new Cavalo(tabuleiro, Cor.PRETO));
