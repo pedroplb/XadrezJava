@@ -44,7 +44,13 @@ public class Program {
 				if (partidaXadrez.getPromovido() != null) {
 					System.out.println("Promovido! ");
 					System.out.println("Entre com a promoção (R, T, C ou R): ");
-					String tipo = sc.nextLine();
+					String tipo = sc.nextLine().toUpperCase();
+					
+					while (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("T") && !tipo.equals("Q")) {
+						System.out.println("Entre tipo de peca valido (R, T, C ou R): ");
+						tipo = sc.nextLine().toUpperCase();
+					}
+					
 					partidaXadrez.trocaPecaPromovida(tipo);
 				}
 				
