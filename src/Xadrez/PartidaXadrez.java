@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import Xadrez.pecas.Bispo;
 import Xadrez.pecas.Peao;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
@@ -74,20 +75,36 @@ public class PartidaXadrez {
 		Posicao origem = origemPosicao.paraPosicao();
 		Posicao destino = destinoPosicao.paraPosicao();
 		validaPosicaoOrigem(origem);
+		System.out.println("origem " + origem);
 		validaPosicaoDestino(origem,destino);
+		System.out.println("destino " + destino);
 		Peca capturadaPeca = movimentar(origem, destino);
+		System.out.println("capturadaPeca  " + capturadaPeca);
 		
+
 		if(testaCheck(jogadorAtual)) {
 			desfazerMovimento(origem, destino, capturadaPeca);
 			throw new XadrezException("Voce nao pode se colocar em check");
 		}
 		
+		System.out.println("ponto 0 ");
+		System.out.println(oponente(jogadorAtual));
+		
+		Cor teste = Cor.BRANCO;
+		System.out.println(testaCheck(teste));
+		System.out.println("ponto 1 ");
+		
 		check = (testaCheck(oponente(jogadorAtual))) ? true : false;
+		
+		System.out.println(check);
+		
+		
 		
 		if(testaCheckMate(oponente(jogadorAtual))){
 			checkMate = true;
 		}
 		else {
+			System.out.println("ponto final");
 			proximoTurno();
 		}
 		
@@ -160,14 +177,14 @@ public class PartidaXadrez {
 				return (PecaXadrez)p;
 			}
 		}
-		throw new IllegalStateException("Nao ha rei desta cor no tabuleiro");		
+		throw new IllegalStateException("Não ha rei " + cor + " no tabuleiro");
 	}
 	
 	private boolean testaCheck(Cor cor) {
 		Posicao reiPosicao = rei(cor).getPosicaoXadrez().paraPosicao();
-		List<Peca> pecaOponente = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez)x).getCor() == oponente(cor)).collect(Collectors.toList());
-		for(Peca p : pecaOponente) {
-			boolean [][] mat = p.movimentoPossivel();
+		List<Peca> oponentePecas = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez)x).getCor() == oponente(cor)).collect(Collectors.toList());
+		for (Peca p : oponentePecas) {
+			boolean[][] mat = p.movimentoPossivel();
 			if (mat[reiPosicao.getLinha()][reiPosicao.getColuna()]) {
 				return true;
 			}
@@ -215,7 +232,9 @@ public class PartidaXadrez {
 	
 	private void configInicial() {
 		colocaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
+		colocaPeca('c', 1, new Bispo(tabuleiro, Cor.BRANCO));
 		colocaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+		colocaPeca('f', 1, new Bispo(tabuleiro, Cor.BRANCO));
 		colocaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
 		colocaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));
 		colocaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
@@ -227,7 +246,9 @@ public class PartidaXadrez {
 		colocaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
 
 		colocaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
+		colocaPeca('c', 8, new Bispo(tabuleiro, Cor.PRETO));
 		colocaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		colocaPeca('f', 8, new Bispo(tabuleiro, Cor.PRETO));
 		colocaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
 		colocaPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
 		colocaPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));

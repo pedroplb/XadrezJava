@@ -12,14 +12,14 @@ import Xadrez.XadrezException;
 public class Program {
 
 	public static void main(String[] args) {
-		
+
 		Scanner sc = new Scanner(System.in);
-		
+
 		PartidaXadrez partidaXadrez = new PartidaXadrez();
 		List<PecaXadrez> capturada = new ArrayList<>();
-		
+
 		//interface de usuario
-		
+
 		while(!partidaXadrez.getCheckMate()){
 			try {
 				UI.clearScreen();
@@ -27,15 +27,15 @@ public class Program {
 				System.out.println();
 				System.out.print("Origem: ");
 				PosicaoXadrez origem = UI.lePosicaoXadrez(sc);
-				
+
 				boolean [][] movimentoPossivel = partidaXadrez.movimentosPossiveis(origem);
 				UI.clearScreen();
 				UI.imprimeTabuleiro(partidaXadrez.getPecas(), movimentoPossivel);
-				
+
 				System.out.println();
 				System.out.print("Destino: ");
 				PosicaoXadrez destino = UI.lePosicaoXadrez(sc);
-				
+
 				PecaXadrez capturadaPeca = partidaXadrez.facaMovimentoXadrez(origem, destino);
 				if (capturadaPeca !=null) {
 					capturada.add(capturadaPeca);
@@ -45,18 +45,18 @@ public class Program {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 			}
-			
+
 			catch(InputMismatchException e) {
 				System.out.println(e.getMessage());
-				sc.nextLine();
+				sc.nextLine();	
 			}
-			
+
 		}
-		
+
 		UI.clearScreen();
 		UI.imprimePartida(partidaXadrez, capturada);
-		
+
 	}
-	
+
 
 }
